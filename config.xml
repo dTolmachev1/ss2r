@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config>
+    <merge-similar-tables>true</merge-similar-tables>
+    <type-threshold>0.9</type-threshold>
+    <type-policy>ignore</type-policy>
+    <unique-threshold>0.9</unique-threshold>
+    <unique-policy>keep first</unique-policy>
+    <reference-threshold>0.9</reference-threshold>
+    <reference-policy>ignore</reference-policy>
+    <dbms-config>
+        <driver-class-name>org.postgresql.Driver</driver-class-name>
+        <url>jdbc:postgresql://localhost:5432</url>
+        <username>demo_user</username>
+        <password>demo_password</password>
+    </dbms-config>
+</config>

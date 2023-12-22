@@ -13,7 +13,11 @@ repositories {
 }
 
 ext {
+    commonscliVersion = '1.5.0'
+    jakartaAnnotationVersion = '2.1.1'
+    jaxbVersion = '4.0.1'
     junitVersion = '5.9.3'
+    opencsvVersion = '5.7.1'
     postgresqlVersion = '42.6.0'
 }
 
@@ -22,10 +26,15 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 application {
-    mainClass = 'io.github.dtolmachev1.ss2r.Application'
+    mainClass = 'io.github.dtolmachev1.ss2r.ConsoleApp'
 }
 
 dependencies {
+    implementation "com.opencsv:opencsv:${opencsvVersion}"
+    implementation "commons-cli:commons-cli:${commonscliVersion}"
+    implementation "jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}"
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:${jaxbVersion}"
+    implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbVersion}"
     implementation "org.postgresql:postgresql:${postgresqlVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
@@ -33,4 +42,21 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.register('fatJar', Jar) {
+    manifest {
+        attributes 'main-class': application.mainClass
+    }
+    archiveClassifier = 'standalone'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+build {
+    dependsOn fatJar
 }
