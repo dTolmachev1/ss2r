@@ -13,12 +13,11 @@ repositories {
 }
 
 ext {
-    commonscliVersion = '1.5.0'
+    commonscliVersion = '1.6.0'
     jakartaAnnotationVersion = '2.1.1'
-    jaxbVersion = '4.0.1'
     junitVersion = '5.9.3'
-    opencsvVersion = '5.7.1'
-    postgresqlVersion = '42.6.0'
+    opencsvVersion = '5.9'
+    postgresqlVersion = '42.5.4'
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -26,15 +25,13 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 application {
-    mainClass = 'io.github.dtolmachev1.ss2r.ConsoleApp'
+    mainClass = 'io.github.dtolmachev1.ConsoleApp'
 }
 
 dependencies {
     implementation "com.opencsv:opencsv:${opencsvVersion}"
     implementation "commons-cli:commons-cli:${commonscliVersion}"
     implementation "jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationVersion}"
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:${jaxbVersion}"
-    implementation "org.glassfish.jaxb:jaxb-runtime:${jaxbVersion}"
     implementation "org.postgresql:postgresql:${postgresqlVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

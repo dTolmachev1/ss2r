@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <config>
     <merge-similar-tables>true</merge-similar-tables>
+    <table-similarity-threshold>0.8</table-similarity-threshold>
+    <similar-tables-policy>remove</similar-tables-policy>
     <type-threshold>0.9</type-threshold>
     <type-policy>ignore</type-policy>
     <unique-threshold>0.9</unique-threshold>
-    <unique-policy>keep first</unique-policy>
+    <unique-policy>ignore</unique-policy>
     <reference-threshold>0.9</reference-threshold>
     <reference-policy>ignore</reference-policy>
+    <multi-value-reference-length>100</multi-value-reference-length>
+    <multi-value-reference-count>2</multi-value-reference-count>
+    <multi-value-reference-separators>|</multi-value-reference-separators>
+    <multi-value-reference-threshold>0.9</multi-value-reference-threshold>
+    <multi-value-reference-policy>ignore</multi-value-reference-policy>
     <dbms-config>
         <driver-class-name>org.postgresql.Driver</driver-class-name>
         <url>jdbc:postgresql://localhost:5432</url>
-        <username>demo_user</username>
-        <password>demo_password</password>
+        <username>user</username>
+        <password>password</password>
     </dbms-config>
 </config>
